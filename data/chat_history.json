@@ -1,0 +1,14 @@
+[
+  {
+    "session_id": "02fbb9e1-b8ba-48bd-bbcc-cc8a8674fd4c",
+    "timestamp": "2025-05-03T23:07:51.823843",
+    "user": "hello",
+    "assistant": "Hello!\n\nSources: location_data.json, sleep_diary.json, wearable_data.json"
+  },
+  {
+    "session_id": "a0ad01e7-88a0-4e9e-a45b-d1d631d7f977",
+    "timestamp": "2025-05-03T23:08:17.967372",
+    "user": "how was my sleep on April 24,2024?",
+    "assistant": "On April 24, 2024, you slept for 4.1 hours, including 1.2 hours of REM sleep and 0.6 hours of deep sleep.  You noted that you had a somewhat stressful workday but managed to sleep okay.\n\nSources: location_data.json, sleep_diary.json, wearable_data.json"
+  }
+]
