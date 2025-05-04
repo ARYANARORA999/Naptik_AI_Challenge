@@ -17,7 +17,7 @@ A conversational health assistant powered by **Gemini** and **LangChain**, with 
 ### ✅ Clone & Setup Environment
 
 ```bash
-git clone https://github.com/your-repo/Naptik_AI_Challenge.git
+git clone https://github.com/ARYANARORA999/Naptik_AI_Challenge.git
 cd Naptik_AI_Challenge
 
 # (Optional) Create a virtual environment
