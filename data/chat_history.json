@@ -1,14 +1,126 @@
 [
   {
-    "session_id": "02fbb9e1-b8ba-48bd-bbcc-cc8a8674fd4c",
-    "timestamp": "2025-05-03T23:07:51.823843",
-    "user": "hello",
-    "assistant": "Hello!\n\nSources: location_data.json, sleep_diary.json, wearable_data.json"
+    "user": "how was my sleep on April 21,2024?",
+    "RAG Assistant": "On April 21, 2024, you slept for 5.7 hours. Your REM sleep was 1.0 hours and your deep sleep was 0.8 hours. You also noted that you fell asleep faster and felt okay.\n\nSources: wearable_data.json, sleep_diary.json"
   },
   {
-    "session_id": "a0ad01e7-88a0-4e9e-a45b-d1d631d7f977",
-    "timestamp": "2025-05-03T23:08:17.967372",
-    "user": "how was my sleep on April 24,2024?",
-    "assistant": "On April 24, 2024, you slept for 4.1 hours, including 1.2 hours of REM sleep and 0.6 hours of deep sleep.  You noted that you had a somewhat stressful workday but managed to sleep okay.\n\nSources: location_data.json, sleep_diary.json, wearable_data.json"
+    "user": "what was my location on that day?",
+    "RAG Assistant": "I am sorry, I cannot answer that question. The provided data does not contain location information.\n\nSources: wearable_data.json, sleep_diary.json"
+  },
+  {
+    "user": "how was my sleep on April 21,2024?",
+    "RAG Assistant": "On April 21, 2024, you slept for 5.7 hours. Your REM sleep was 1.0 hours and deep sleep was 0.8 hours. You also noted that you fell asleep faster last night and were feeling okay today.\n\nSources: wearable_data.json, sleep_diary.json"
+  },
+  {
+    "user": "what was my location oon that day?",
+    "RAG Assistant": "I am sorry, I cannot answer that question. The provided data does not contain location information.\n\nSources: wearable_data.json, sleep_diary.json"
+  },
+  {
+    "user": "what was my location on April 21,2024 and how was my sleep on thaty day?",
+    "RAG Assistant": "I am sorry, I cannot answer that question. The provided data does not contain location information. On April 21, 2024, you slept for 5.7 hours. Your REM sleep was 1.0 hours and deep sleep was 0.8 hours.\n\nSources: wearable_data.json, location_data.json, sleep_diary.json"
+  },
+  {
+    "user": "where was i on april 24,2024?",
+    "RAG Assistant": "I am sorry, I cannot answer that question. The provided data does not contain location information.\n\nSources: wearable_data.json, sleep_diary.json"
+  },
+  {
+    "user": "where was i on april 24,2024?",
+    "RAG Assistant": "On April 24, 2024, you were in London, UK.\n\nSources: location_data.json"
+  },
+  {
+    "user": "how was my sleep on that day?",
+    "RAG Assistant": "On April 24, 2024, you slept for 4.1 hours. You had 1.2 hours of REM sleep and 0.6 hours of deep sleep.\n\nSources: wearable_data.json, location_data.json, sleep_diary.json"
+  },
+  {
+    "user": "how was my sleep on April 21,2024?",
+    "RAG Assistant": "On April 21, 2024, you slept for 5.7 hours, with 1.0 hours of REM sleep and 0.8 hours of deep sleep. You also noted that you fell asleep faster and were feeling okay that day.\n\nSources: sleep_diary.json, wearable_data.json"
+  },
+  {
+    "user": "how many steps did i take on that day, also also tell my calories?",
+    "RAG Assistant": "On April 21, 2024, you took 1816 steps and consumed 2484 calories.\n\nSources: wearable_data.json"
+  },
+  {
+    "user": "where was i that day?",
+    "RAG Assistant": "I am sorry, I do not have the information about where you were on that day.\n\nSources: wearable_data.json"
+  },
+  {
+    "user": "where was i on april 24,2024?",
+    "RAG Assistant": "I am sorry, I do not have the information about where you were on that day.\n\nSources: wearable_data.json"
+  },
+  {
+    "user": "where was i on april 21,2024?",
+    "RAG Assistant": "You were in San Francisco, CA, USA on April 21, 2024.\n\nSources: location_data.json"
+  },
+  {
+    "user": "where was i the next day?",
+    "RAG Assistant": "You were in London, UK on April 24, 2024.\n\nSources: location_data.json"
+  },
+  {
+    "user": "how was my sleep on september 21,2024?",
+    "RAG Assistant": "On September 21, 2024:\n- My sleep hours were 5.4\n- My REM sleep was 1.2\n- My deep sleep was 1.3\n- Also, my sleep schedule seemed normal again and I was feeling rested.\n\nSources: sleep_diary.json, wearable_data.json"
+  },
+  {
+    "user": "how was my sleep on september 21st, 2024?",
+    "RAG Assistant": "On September 21, 2024:\n- My sleep hours were 5.4\n- My REM sleep was 1.2\n- My deep sleep was 1.3\n\nSources: wearable_data.json, sleep_diary.json"
+  },
+  {
+    "user": "how was my sleep on april 21,2024?",
+    "RAG Assistant": "On April 21, 2024, you slept for 5.7 hours. Your REM sleep was 1.0 hours and deep sleep was 0.8 hours. You fell asleep faster last night and were feeling okay today.\n\nSources: sleep_diary.json, wearable_data.json"
+  },
+  {
+    "user": "how many calories i consumed on that day?",
+    "RAG Assistant": "On April 21, 2024, you consumed 2484 calories.\n\nSources: wearable_data.json"
+  },
+  {
+    "user": "how many steps did i take on that day?",
+    "RAG Assistant": "On April 21, 2024, you took 1816 steps.\n\nSources: wearable_data.json"
+  },
+  {
+    "user": "where was i on that day?",
+    "RAG Assistant": "I am sorry, I cannot answer that. The given data does not contain information about location.\n\nSources: wearable_data.json"
+  },
+  {
+    "user": "how was my sleep the next day?",
+    "RAG Assistant": "On April 22, 2024, you slept for 6.9 hours. You had 1.3 hours of REM sleep and 1.6 hours of deep sleep.\n\nSources: wearable_data.json"
+  },
+  {
+    "user": "how was my sleep on april 21st, 2024?",
+    "RAG Assistant": "On April 21, 2024, you slept for 5.7 hours. You had 1.0 hours of REM sleep and 0.8 hours of deep sleep.\n\nSources: sleep_diary.json, wearable_data.json"
+  },
+  {
+    "user": "how was my sleep on april 24th, 2024?",
+    "RAG Assistant": "On April 24, 2024, you slept for 4.1 hours. You had 1.2 hours of REM sleep and 0.6 hours of deep sleep.\n\nSources: wearable_data.json, sleep_diary.json"
+  },
+  {
+    "user": "how was my sleep on april 21st, 2024?",
+    "RAG Assistant": "On April 21, 2024, you slept for 5.7 hours. You had 1.0 hours of REM sleep and 0.8 hours of deep sleep. You also noted that you fell asleep faster and were feeling okay that day.\n\nSources: wearable_data.json, sleep_diary.json"
+  },
+  {
+    "user": "how many calories did i consume on that day?",
+    "RAG Assistant": "You consumed 2484 calories on April 21, 2024.\n\nSources: wearable_data.json"
+  },
+  {
+    "user": "sawa was my sleep on april 21, 2024.",
+    "RAG Assistant": "I already answered how your sleep was on April 21st, 2024.\n\nSources: wearable_data.json"
+  },
+  {
+    "user": "how many steps did i take on that day?",
+    "RAG Assistant": "You took 1816 steps on April 21, 2024.\n\nSources: wearable_data.json"
+  },
+  {
+    "user": "did i consume caffeine on that day?",
+    "RAG Assistant": "Yes, you consumed caffeine on April 21, 2024.\n\nSources: wearable_data.json"
+  },
+  {
+    "user": "how many steps did i walk the next day?",
+    "RAG Assistant": "You took 6382 steps on April 22, 2025.\n\nSources: wearable_data.json"
+  },
+  {
+    "user": "did i consume caffeine on the day before?",
+    "RAG Assistant": "Yes, you consumed caffeine on April 21, 2025.\n\nSources: wearable_data.json"
+  },
+  {
+    "user": "how was my sleep on may 23, 2024?",
+    "RAG Assistant": "On May 23, 2024, you slept for 6.6 hours with 1.9 hours of REM sleep and 1.4 hours of deep sleep. You also noted that you hit snooze a couple of times and still weren't fully rested.\n\nSources: sleep_diary.json, wearable_data.json"
   }
 ]
