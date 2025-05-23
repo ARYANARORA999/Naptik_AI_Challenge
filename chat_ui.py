@@ -7,7 +7,13 @@ from rag_pipeline import ask_rag_query
 st.set_page_config(page_title="🧠 SleepBot RAG", layout="centered")
 
 st.title("😴 SleepBot — Your Sleep & Health Chatbot")
+st.markdown("🗣️ Want to switch to voice?")
+if st.button("🎤 Launch Voice Chat"):
+    st.markdown("Running voice agent... (open terminal manually for now)")
+    os.system("start cmd /k python voice_chat.py")  # Windows specific
+
 st.markdown("Ask me anything about your sleep, steps, heart rate, caffeine, jet lag, and more! 🧬")
+
 
 # --- Persistent Chat History ---
 memory_path = "data/chat_history.json"
