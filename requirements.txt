@@ -1,7 +1,11 @@
-﻿langchain
-langchain-google-genai
+openai-whisper
+torch
+sounddevice
+soundfile
+edge-tts
+streamlit
+langchain
 langchain-community
 faiss-cpu
-google-generativeai
+langchain-google-genai
 dateparser
-streamlit
