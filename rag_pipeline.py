@@ -78,39 +78,58 @@ def ask_rag_query(query: str, history: list[str] = None) -> str:
 
     # --- Temporal Handling ---
     today = getattr(ask_rag_query, "last_date", None)
+    parsed = dateparser.parse(query)
 
     if "next day" in q and today:
         inferred = today + timedelta(days=1)
         query = f"What happened on {inferred.strftime('%B %d, %Y')}?"
         q = query.lower()
-        ask_rag_query.last_date = inferred
+        parsed = inferred
     elif "previous day" in q and today:
         inferred = today - timedelta(days=1)
         query = f"What happened on {inferred.strftime('%B %d, %Y')}?"
         q = query.lower()
-        ask_rag_query.last_date = inferred
+        parsed = inferred
+    elif "that day" in q and today:
+        parsed = today
+
+    if parsed:
+        date_key = parsed.strftime("%Y-%m-%d")
+        ask_rag_query.last_date = parsed
+    else:
+        date_key = None
 
     # --- Intent Detection ---
     if any(word in q for word in ["feel", "dream", "mood", "diary", "note", "vivid", "groggy", "journal"]):
         doc_filters.add("diary")
-    if any(word in q for word in ["rem", "deep", "sleep", "bed", "awake", "snore", "steps", "caffeine", "heart rate", "how many hours", "sleep time"]):
+    if any(word in q for word in ["rem", "deep", "sleep", "bed", "awake", "snore", "how many hours", "sleep time"]):
+        doc_filters.add("diary")
         doc_filters.add("wearable")
-    if any(word in q for word in ["timezone", "location", "jet lag", "city", "country", "where", "which place", "which city", "was i in", "whereabouts"]):
+    elif any(word in q for word in ["steps", "calories", "caffeine", "heart rate", "distance", "energy"]):
+        doc_filters.add("wearable")
+        
+    # ✅ Improved location trigger
+    if any(phrase in q for phrase in [
+        "where was i", "was i in", "which city", "which place", "location", "country",
+        "city", "whereabouts", "where did i go", "what place"
+    ]):
         doc_filters.add("location")
+
     if any(word in q for word in ["goal", "name", "age", "gender", "profile"]):
         doc_filters.add("profile")
 
-    # --- Date Filter ---
-    parsed = dateparser.parse(query)
-    filtered_docs = []
-    if parsed:
-        date_key = parsed.strftime("%Y-%m-%d")
-        filtered_docs = [doc for doc in all_docs if doc.metadata.get("date") == date_key]
-        ask_rag_query.last_date = parsed
-    elif doc_filters:
-        filtered_docs = [doc for doc in all_docs if doc.metadata.get("type") in doc_filters]
-    else:
-        filtered_docs = all_docs
+    print("Doc filters:", doc_filters)
+
+    # --- Combined Filter (date + doc type) ---
+    filtered_docs = all_docs
+    if date_key:
+        filtered_docs = [doc for doc in filtered_docs if doc.metadata.get("date") == date_key]
+    if doc_filters:
+        filtered_docs = [doc for doc in filtered_docs if doc.metadata.get("type") in doc_filters]
+
+    # 🚫 If no data matched
+    if not filtered_docs:
+        return "I could not find any data for that day and category. Try asking about a different date or topic.\n\nSources: None"
 
     # 🔄 Build vectorstore from relevant docs
     temp_vs = build_vectorstore(filtered_docs)
@@ -126,3 +145,7 @@ def ask_rag_query(query: str, history: list[str] = None) -> str:
     answer = result["result"]
     sources = [doc.metadata["source"] for doc in result["source_documents"]]
     return f"{answer}\n\nSources: {', '.join(set(sources))}"
+
+# 🌐 Public access
+def get_chat_response(query: str, history: list[str] = None) -> str:
+    return ask_rag_query(query, history=history)
