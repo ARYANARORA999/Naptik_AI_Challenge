@@ -18,7 +18,7 @@ if os.path.exists(memory_path) and os.path.getsize(memory_path) > 0:
 memory = ConversationBufferMemory(memory_key="chat_history", return_messages=True)
 for m in chat_data:
     memory.chat_memory.add_user_message(m["user"])
-    memory.chat_memory.add_ai_message(m["RAG Assistant"] + "\n" + m["Tool Assistant"])
+    memory.chat_memory.add_ai_message(m["RAG Assistant"])
 
 # 🌐 Gemini setup
 os.environ["GOOGLE_API_KEY"] = "AIzaSyBeZmM4OosHckKTTPeQW08ymisgD0uJKrs"
