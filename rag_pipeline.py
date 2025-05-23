@@ -9,11 +9,11 @@ from langchain.docstore.document import Document
 from langchain.chains import RetrievalQA
 import dateparser
 
-# 🔐 API Key and Embedding Model
+#  API Key and Embedding Model
 os.environ["GOOGLE_API_KEY"] = "AIzaSyBeZmM4OosHckKTTPeQW08ymisgD0uJKrs"
 embedding = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
 
-# 📥 Load structured JSONs and enrich with readable dates
+#  Load structured JSONs and enrich with readable dates
 def load_structured_jsons(folder="data"):
     structured_docs = []
     file_map = {
@@ -57,7 +57,7 @@ def load_structured_jsons(folder="data"):
 
     return structured_docs
 
-# 🧠 Build vector index
+#  Build vector index
 def build_vectorstore(documents):
     splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=100)
     chunks = splitter.split_documents(documents)
@@ -65,11 +65,11 @@ def build_vectorstore(documents):
         raise ValueError("No valid document chunks to index.")
     return FAISS.from_documents(chunks, embedding)
 
-# 🔄 Load all docs once
+#  Load all docs once
 all_docs = load_structured_jsons()
 llm = ChatGoogleGenerativeAI(model="models/gemini-2.0-flash", temperature=0.4)
 
-# 📣 Ask query with smart filters and date memory
+#  Ask query with smart filters and date memory
 def ask_rag_query(query: str, history: list[str] = None) -> str:
     if history:
         query = "\n".join(history[-4:]) + "\n" + query
@@ -108,7 +108,7 @@ def ask_rag_query(query: str, history: list[str] = None) -> str:
     elif any(word in q for word in ["steps", "calories", "caffeine", "heart rate", "distance", "energy"]):
         doc_filters.add("wearable")
         
-    # ✅ Improved location trigger
+    #  Improved location trigger
     if any(phrase in q for phrase in [
         "where was i", "was i in", "which city", "which place", "location", "country",
         "city", "whereabouts", "where did i go", "what place"
@@ -127,11 +127,11 @@ def ask_rag_query(query: str, history: list[str] = None) -> str:
     if doc_filters:
         filtered_docs = [doc for doc in filtered_docs if doc.metadata.get("type") in doc_filters]
 
-    # 🚫 If no data matched
+    #  If no data matched
     if not filtered_docs:
         return "I could not find any data for that day and category. Try asking about a different date or topic.\n\nSources: None"
 
-    # 🔄 Build vectorstore from relevant docs
+    #  Build vectorstore from relevant docs
     temp_vs = build_vectorstore(filtered_docs)
     retriever = temp_vs.as_retriever(search_type="similarity", search_kwargs={"k": 500})
 
@@ -146,6 +146,6 @@ def ask_rag_query(query: str, history: list[str] = None) -> str:
     sources = [doc.metadata["source"] for doc in result["source_documents"]]
     return f"{answer}\n\nSources: {', '.join(set(sources))}"
 
-# 🌐 Public access
+#  Public access
 def get_chat_response(query: str, history: list[str] = None) -> str:
     return ask_rag_query(query, history=history)
