@@ -1,4 +1,4 @@
-# 💤 Naptik AI Challenge — SleepBot 💬🎙️
+# 💤 SleepBot 💬🎙️
 
 A conversational health assistant powered by **Gemini**, **LangChain**, and **local voice tools**, providing intelligent, voice-enabled insights over structured personal sleep, health, and location data.
 
